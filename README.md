@@ -6,7 +6,7 @@ Este projeto utiliza o Apache Airflow para orquestração de workflows. Ele incl
 
 ## Estrutura do Projeto
 
-``` sh
+```sh
 ├── assets/
 │ └── local-airflow-diagram.png
 ├── aws-proposal/
@@ -72,7 +72,8 @@ O projeto utiliza Docker Compose para configurar os serviços necessários. O ar
 4. Inicie os serviços:
 
     ```sh
-    docker-compose up -d
+    sudo chown -R 5000:5000 ./logs
+    docker compose up -d
     ```
 
 ## DAG de Exemplo
