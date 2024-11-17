@@ -1,7 +1,0 @@
-1. Alterado o usuário do Postgres de 'admin' para 'airflow' (compose.yaml L31)
-2. Alterado a porta do HealthCheck do Webserver de xxxx para 8080 (compose.yaml L61)
-3. Alterado a pasta 'dag' para 'dags' (compose.yaml L14)
-4. Executado o seguinte comando: 'sudo mkdir -p ./logs && sudo chown -R 5000:5000 ./logs && sudo touch ./logs/.gitkeep'. Afim de criar a pasta de logs com as permissões necessárias
-5. Adicionado ':' à função para resolver um problema de sintaxe (smooth.py L13)
-6. Criado o arquivo 'requirements/run.txt' contendo a dependência 'apache-airflow==2.5.1'
-7. Criado um novo ambiente virtual e instalado a dependência: 'python -m venv .venv && source .venv/bin/activate && pip install -r requirements/run.txt'
