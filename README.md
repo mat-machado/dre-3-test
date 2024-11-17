@@ -31,16 +31,19 @@ Este projeto utiliza o Apache Airflow para orquestração de workflows. Ele incl
 
 O projeto utiliza Docker Compose para configurar os serviços necessários. O arquivo [compose.yaml](compose.yaml) define os seguintes serviços:
 
-- **PostgreSQL**: Banco de dados para o Airflow.
+[![Airflow Local](assets/local-airflow-diagram.png)](assets/local-airflow-diagram.png)
+
+- **PostgreSQL**: Banco de dados para os metadados do Airflow.
 - **Redis**: Broker para o Celery Executor.
 - **Airflow Webserver**: Interface web do Airflow.
-- **Airflow Scheduler**: Responsável por agendar as tarefas.
+- **Airflow Scheduler**: Responsável por agendar as tarefas e realizar a validação/serialização das Dags.
 - **Airflow Worker**: Executa as tarefas agendadas.
-- **Airflow Triggerer**: Gerencia os triggers.
 - **Flower**: Interface web para monitoramento do Celery.
 
 ## Requisitos
 
+- Git
+- Python 3.8+
 - Docker
 - Docker Compose
 
@@ -49,8 +52,8 @@ O projeto utiliza Docker Compose para configurar os serviços necessários. O ar
 1. Clone o repositório:
 
     ```sh
-    git clone <URL_DO_REPOSITORIO>
-    cd <NOME_DO_REPOSITORIO>
+    git clone https://github.com/mat-machado/dre-3-test
+    cd dre-3-test
     ```
 
 2. Crie e ative um ambiente virtual:
@@ -79,6 +82,10 @@ O projeto inclui um DAG de exemplo chamado `smooth`, definido no arquivo [dags/s
 ## Problemas Conhecidos e Soluções
 
 Veja o arquivo [PROBLEMS.md](PROBLEMS.md) para uma lista de problemas conhecidos e suas soluções.
+
+## Proposta de arquitetura Cloud na AWS
+
+Uma proposta para subir na nuvem AWS foi criada e descrita no documento [README.md](aws-proposal/README.md)
 
 ## Licença
 
