@@ -1,6 +1,7 @@
+from datetime import datetime
+
 from airflow.decorators import dag
 from airflow.operators.smooth import SmoothOperator
-from datetime import datetime
 
 
 @dag(
@@ -9,10 +10,8 @@ from datetime import datetime
     catchup=False,
     tags=["smooth"],
 )
-def smooth()
-    video = SmoothOperator(
-        task_id="youtube_video"
-    )
+def smooth():
+    video = SmoothOperator(task_id="youtube_video")  # noqa
 
 
 smooth()
