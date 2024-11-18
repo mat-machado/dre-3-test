@@ -13,7 +13,7 @@ Uma documentação para explicar o conteudo da imagem de arquitetura proposta do
 
 ### Application Load Balancer (ALB)
 
-- Será responsável por realizar o balaceamento de carga vindo do DNS para a UI do Airflow (Webserver).
+- Será responsável por realizar o balanceamento de carga vindo do DNS para a UI do Airflow (Webserver).
 
 ### WebServer
 
@@ -41,7 +41,7 @@ Ele recebe o agendamento do Scheduler, para ser consumido pelo Worker.
 
 - É o responsável por executar os Scripts contidos dentro de Dags. Seu processo fica avaliando a fila do SQS, encontrando uma mensagem, é iniciado o processamento.
 - Após a execução, de sucesso ou não, salva o metadado no RDS Postgres, para ser analisado pelo usuário posteriormente e ter a informação de histórico.
-- Como é o serviço responsável pela execução, possui muita carga, então é autamente escalavel, o qual é feito pelo serviço Worker Scaller.
+- Como é o serviço responsável pela execução, possui muita carga, então é altamente escalavel, o qual é feito pelo serviço Worker Scaller.
 
 ### Worker Scaller
 
@@ -56,7 +56,7 @@ Ele recebe o agendamento do Scheduler, para ser consumido pelo Worker.
 ### Dags Agent
 
 - Serviço criado a parte, para fazer o sincronismo entre as Dags armazenadas no S3 e no EFS, para serem consumidas pelo Scheduler.
-- É apenas um agendados com um comando de `aws s3 sync`, onde o agente possui uma conexão com o EFS que será consumido pelo Scheduler.
+- É apenas um agendador com um comando de `aws s3 sync`, onde o agente possui uma conexão com o EFS que será consumido pelo Scheduler.
 
 ### Elastic File System (EFS)
 
@@ -73,7 +73,7 @@ Ele recebe o agendamento do Scheduler, para ser consumido pelo Worker.
   1. Armazenamento das Dags geradas pelos desenvolvedores:
       - Após criar a Dag, será feito um sincronismo da mesma para um Bucket no S3, onde posteriormente será consumida pelo Dags Agent e por fim salva no EFS para uso no Scheduler.
   2. Armazenamento dos XCOMs do Airflow:
-      - Para garantir segurança e reseliencia das conexões utilizadas pelo Airflow durante a execução de tarefas, configurações internas, etc... Será utilizado um Bucket do S3 como um banco de key:value, tanto para o uso do Airflow em si, quanto para salvar os dados solicitados pelas Dags durante a sua execução.
+      - Para garantir segurança e resiliência das conexões utilizadas pelo Airflow durante a execução de tarefas, configurações internas, etc... Será utilizado um Bucket do S3 como um banco de key:value, tanto para o uso do Airflow em si, quanto para salvar os dados solicitados pelas Dags durante a sua execução.
       Ex.: Uma Dag solicita um paramento na Parameter Store, esse valor será salvo como XCOM para uso e não será mais necessário consulta no SSM.
 
 - É necessário um script a parte para realizar a criptografia e descriptografia dos dados nesse Bucket.
